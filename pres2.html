@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Maestro de Ejecución – Proyecto OCEMI Macolla PI-CD02 (M5)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #003F5C;
+            color: #F7F7F7;
+        }
+        .card {
+            background-color: #346A82;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 50vh;
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            color: #B9D7E5;
+            align-self: center;
+        }
+        .kpi-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+        .kpi-label {
+            font-size: 1rem;
+            color: #B9D7E5;
+        }
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: #B9D7E5;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 2.5rem auto;
+        }
+        .tren-card {
+            background-color: #73A2B8;
+            color: #1e3a8a;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+        .tren-arrow {
+            font-size: 2.5rem;
+            color: #F7F7F7;
+            margin: 0 0.5rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="text-center py-12 px-4 bg-cover bg-center" style="background-color: #002c40;">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-4xl md:text-5xl font-bold text-white leading-tight">Plan Maestro de Ejecución</h1>
+            <h2 class="text-2xl md:text-3xl text-b9d7e5 mt-2">Proyecto OCEMI Macolla PI-CD02 (M5)</h2>
+            <p class="mt-4 text-lg text-gray-300">Primera Fase: Septiembre 2025 – Mayo 2026</p>
+            <p class="mt-2 text-md text-gray-400">Presentado por: Chris Green – IT Manager</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        <section id="resumen" class="mb-20">
+            <h3 class="section-title">Resumen Ejecutivo</h3>
+            <p class="section-subtitle">Los indicadores clave definen el marco temporal y estratégico del proyecto, enfocándose en una ejecución eficiente y controlada.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="card">
+                    <span class="text-5xl">📅</span>
+                    <p class="kpi-value mt-2">195</p>
+                    <p class="kpi-label">Días Hábiles Totales</p>
+                </div>
+                <div class="card">
+                    <span class="text-5xl">⏱️</span>
+                    <p class="kpi-value mt-2">9 Meses</p>
+                    <p class="kpi-label">Sep 2025 - May 2026</p>
+                </div>
+                <div class="card">
+                    <span class="text-5xl">⚙️</span>
+                    <p class="kpi-value mt-2">3 Estrategias</p>
+                    <p class="kpi-label">Sectorización, Solapamiento y Ruta Crítica</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="magnitud" class="mb-20">
+            <h3 class="section-title">Magnitud del Proyecto</h3>
+            <p class="section-subtitle">Las cifras demuestran la escala de la operación, abarcando un volumen significativo de materiales y recursos a movilizar.</p>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 text-center">
+                <div class="card p-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 mx-auto" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M11 19h-6a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6" />
+                        <path d="M19 13v.01" />
+                        <path d="M19 19v.01" />
+                        <path d="M19 16v.01" />
+                        <path d="M22 19h-1a2 2 0 0 1 -2 -2v-1a2 2 0 0 1 2 -2h1" />
+                        <path d="M13 13h4v4h-4z" />
+                        <path d="M17 17l5 5" />
+                    </svg>
+                    <p class="text-2xl font-bold mt-2">145,767 m³</p>
+                    <p class="text-sm text-b9d7e5">Movimiento de Tierra</p>
+                </div>
+                <div class="card p-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 mx-auto" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" />
+                        <path d="M12 12l8 -4.5" />
+                        <path d="M12 12l-8 -4.5" />
+                        <path d="M12 12l0 9" />
+                        <path d="M12 3l0 9" />
+                    </svg>
+                    <p class="text-2xl font-bold mt-2">2,200 m³</p>
+                    <p class="text-sm text-b9d7e5">Concreto Estructural</p>
+                </div>
+                <div class="card p-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 mx-auto" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M12 3v18" />
+                        <path d="M5 12h14" />
+                        <path d="M3 15h3.089" />
+                        <path d="M17.911 15h3.089" />
+                        <path d="M3 9h3.089" />
+                        <path d="M17.911 9h3.089" />
+                    </svg>
+                    <p class="text-2xl font-bold mt-2">164,850 kg</p>
+                    <p class="text-sm text-b9d7e5">Acero de Refuerzo</p>
+                </div>
+                <div class="card p-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 mx-auto" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M7 6l-2 5l2 5" />
+                        <path d="M10 18h4" />
+                        <path d="M12 15v3" />
+                        <path d="M10 6h4" />
+                        <path d="M12 3v3" />
+                        <path d="M17 6l2 5l-2 5" />
+                    </svg>
+                    <p class="text-2xl font-bold mt-2">3,626 m</p>
+                    <p class="text-sm text-b9d7e5">Tuberías</p>
+                </div>
+                <div class="card p-4 col-span-2 md:col-span-1 lg:col-span-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 mx-auto" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M13 18l-5 -5l5 -5" />
+                        <path d="M13 13h7" />
+                        <path d="M11 13a3 3 0 1 0 0 -6h-5a3 3 0 0 0 0 6h1" />
+                        <path d="M14 20l-5 -5" />
+                        <path d="M11 20l-5 -5" />
+                    </svg>
+                    <p class="text-2xl font-bold mt-2">23 km</p>
+                    <p class="text-sm text-b9d7e5">Cableado Eléctrico</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="estrategia" class="mb-20">
+            <h3 class="section-title">Estrategia Constructiva y Ruta Crítica</h3>
+            <p class="section-subtitle">La ejecución se basa en un modelo de "tren de trabajo" secuencial por zonas, con una ruta crítica claramente definida que guía las prioridades del proyecto.</p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="card">
+                    <h4 class="text-xl font-bold text-center mb-6 text-white">Flujo de Ejecución por Zonas</h4>
+                    <div class="flex flex-col md:flex-row justify-center items-center gap-x-4">
+                        <div class="text-center p-4 bg-b9d7e5 text-gray-900 rounded-lg border-2 border-white">
+                            <p class="font-bold text-lg">Zona A</p>
+                        </div>
+                        <div class="flow-arrow hidden md:block text-xl md:text-2xl">→</div>
+                        <div class="flow-arrow block md:hidden text-xl md:text-2xl">↓</div>
+                        <div class="text-center p-4 bg-b9d7e5 text-gray-900 rounded-lg border-2 border-white">
+                            <p class="font-bold text-lg">Zona B</p>
+                        </div>
+                        <div class="flow-arrow hidden md:block text-xl md:text-2xl">→</div>
+                        <div class="flow-arrow block md:hidden text-xl md:text-2xl">↓</div>
+                        <div class="text-center p-4 bg-b9d7e5 text-gray-900 rounded-lg border-2 border-white">
+                            <p class="font-bold text-lg">Zona C</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h4 class="text-xl font-bold text-center mb-6 text-white">Secuencia de la Ruta Crítica</h4>
+                    <div class="flex flex-col space-y-4">
+                        <div class="text-center p-3 bg-73a2b8 rounded-lg">⛏️ Preparación del Sitio</div>
+                        <div class="self-center flow-arrow">↓</div>
+                        <div class="text-center p-3 bg-73a2b8 rounded-lg">🧱 Fundaciones</div>
+                        <div class="self-center flow-arrow">↓</div>
+                        <div class="text-center p-3 bg-73a2b8 rounded-lg">🔧 Montaje de Tuberías</div>
+                        <div class="self-center flow-arrow">↓</div>
+                        <div class="text-center p-3 bg-73a2b8 rounded-lg">💧 Pruebas y Acabados</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tren-de-trabajo-visual" class="mb-20">
+            <h3 class="section-title">El Tren de Trabajo: Solapamiento Disciplinario</h3>
+            <p class="section-subtitle">Esta gráfica de Gantt muestra cómo cada disciplina avanza por las zonas de la plataforma con un solapamiento controlado, permitiendo que la fase de montaje comience incluso antes de que las obras civiles estén 100% completas.</p>
+            <div class="card">
+                <h4 class="text-xl font-bold text-center mb-4 text-white">Avance de Disciplinas por Zonas</h4>
+                <div class="chart-container" style="height: 350px;">
+                    <canvas id="trenTrabajoChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="cronograma" class="mb-20">
+            <h3 class="section-title">Cronograma y Avance por Disciplina</h3>
+            <p class="section-subtitle">El proyecto se divide en cuatro fases solapadas para optimizar el tiempo, mientras que el análisis por disciplina muestra la distribución del esfuerzo a lo largo del ciclo de vida del proyecto.</p>
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-12">
+                <div class="card">
+                    <h4 class="text-xl font-bold text-center mb-4 text-white">Cronograma por Fases</h4>
+                     <div class="chart-container" style="height: 350px;">
+                        <canvas id="timelineChart"></canvas>
+                    </div>
+                </div>
+                <div class="card">
+                    <h4 class="text-xl font-bold text-center mb-4 text-white">Duración por Disciplina (Días)</h4>
+                    <div class="chart-container" style="height: 350px;">
+                        <canvas id="disciplineChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="riesgos" class="mb-20">
+            <h3 class="section-title">Gestión de Riesgos</h3>
+            <p class="section-subtitle">Se han identificado los riesgos principales y establecido estrategias de mitigación proactivas para asegurar la continuidad y el éxito del proyecto.</p>
+            <div class="card overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead>
+                        <tr class="border-b border-73a2b8">
+                            <th class="p-4 text-lg text-white">⚠️ Riesgo Potencial</th>
+                            <th class="p-4 text-lg text-white">🛡️ Plan de Mitigación</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-73a2b8">
+                            <td class="p-4">Interferencias entre disciplinas</td>
+                            <td class="p-4">Sectorización y planificación paralela detallada.</td>
+                        </tr>
+                        <tr class="border-b border-73a2b8">
+                            <td class="p-4">Fallas en la ruta crítica</td>
+                            <td class="p-4">Monitoreo diario del avance y buffers de transición.</td>
+                        </tr>
+                        <tr class="border-b border-73a2b8">
+                            <td class="p-4">Disponibilidad de materiales/equipos</td>
+                            <td class="p-4">Contratos anticipados y logística escalonada.</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4">Condiciones climáticas adversas</td>
+                            <td class="p-4">Flexibilidad en tareas no críticas y protección de áreas de trabajo.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-6 mt-12" style="background-color: #002c40;">
+        <p class="text-gray-400">Infografía generada para el Proyecto OCEMI Macolla PI-CD02 (M5)</p>
+    </footer>
+
+    <script>
+        const tooltipTitleCallback = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                              return label.join(' ');
+                            } else {
+                              return label;
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        const timelineCtx = document.getElementById('timelineChart').getContext('2d');
+        new Chart(timelineCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Fase 1: Preparación', 'Fase 2: Núcleo Civil', 'Fase 3: Mecánica', 'Fase 4: Cierre'],
+                datasets: [{
+                    label: 'Duración de Fase',
+                    data: [
+                        [0, 5], 
+                        [2, 6], 
+                        [5, 9], 
+                        [7, 9]  
+                    ],
+                    backgroundColor: ['#73A2B8', '#B9D7E5', '#346A82', '#003F5C'],
+                    borderColor: '#F7F7F7',
+                    borderWidth: 1,
+                    borderSkipped: false,
+                }]
+            },
+            options: {
+                ...tooltipTitleCallback,
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        min: 0,
+                        max: 9,
+                        ticks: {
+                            callback: function(value, index, values) {
+                                const months = ['Sep 25', 'Oct', 'Nov', 'Dic', 'Ene 26', 'Feb', 'Mar', 'Abr', 'May'];
+                                return months[value];
+                            },
+                            color: '#F7F7F7'
+                        },
+                        grid: {
+                            color: 'rgba(247, 247, 247, 0.2)'
+                        }
+                    },
+                    y: {
+                         ticks: {
+                            color: '#F7F7F7'
+                        },
+                        grid: {
+                            color: 'rgba(247, 247, 247, 0.1)'
+                        }
+                    }
+                },
+                plugins: {
+                    ...tooltipTitleCallback.plugins,
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        ...tooltipTitleCallback.plugins.tooltip,
+                        callbacks: {
+                            ...tooltipTitleCallback.plugins.tooltip.callbacks,
+                            label: function(context) {
+                                const months = ['Sep 25', 'Oct', 'Nov', 'Dic', 'Ene 26', 'Feb', 'Mar', 'Abr', 'May'];
+                                const start = months[context.raw[0]];
+                                const end = months[context.raw[1]];
+                                return `De ${start} a ${end}`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        const disciplineCtx = document.getElementById('disciplineChart').getContext('2d');
+        new Chart(disciplineCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Obras Civiles', 'Electricidad', 'Señalización', 'Mecánica', 'Seguridad Física', 'Instrumentación'],
+                datasets: [{
+                    label: 'Duración (días)',
+                    data: [170, 160, 149, 117, 80, 65],
+                    backgroundColor: ['#003F5C', '#346A82', '#73A2B8', '#B9D7E5', '#5a8a9e', '#96bdce'],
+                    borderColor: '#F7F7F7',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                ...tooltipTitleCallback,
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        ticks: {
+                            color: '#F7F7F7'
+                        },
+                        grid: {
+                            color: 'rgba(247, 247, 247, 0.2)'
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            color: '#F7F7F7'
+                        },
+                        grid: {
+                            color: 'rgba(247, 247, 247, 0.1)'
+                        }
+                    }
+                },
+                plugins: {
+                    ...tooltipTitleCallback.plugins,
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+        
+        // Nuevo gráfico Gantt para el tren de trabajo
+        const trenTrabajoCtx = document.getElementById('trenTrabajoChart').getContext('2d');
+        const data = {
+            labels: ['Obras Civiles', 'Montaje Mecánico', 'Electricidad e Instrumentación'],
+            datasets: [{
+                label: 'Zona A',
+                data: [[0, 2.5], [1.5, 3.5], [2.5, 4]],
+                backgroundColor: '#B9D7E5',
+                borderColor: '#002c40',
+                borderWidth: 2,
+                barPercentage: 0.7,
+                categoryPercentage: 0.7,
+            }, {
+                label: 'Zona B',
+                data: [[2.5, 4.5], [3.5, 5], [4, 6]],
+                backgroundColor: '#73A2B8',
+                borderColor: '#002c40',
+                borderWidth: 2,
+                barPercentage: 0.7,
+                categoryPercentage: 0.7,
+            }, {
+                label: 'Zona C',
+                data: [[4.5, 6], [5, 7.5], [6, 8]],
+                backgroundColor: '#346A82',
+                borderColor: '#002c40',
+                borderWidth: 2,
+                barPercentage: 0.7,
+                categoryPercentage: 0.7,
+            }]
+        };
+
+        const options = {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    min: 0,
+                    max: 8,
+                    title: {
+                        display: true,
+                        text: 'Semanas',
+                        color: '#F7F7F7'
+                    },
+                    ticks: { color: '#F7F7F7' },
+                    grid: { color: 'rgba(247, 247, 247, 0.2)' }
+                },
+                y: {
+                    ticks: { color: '#F7F7F7' },
+                    grid: { color: 'rgba(247, 247, 247, 0.1)' }
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#F7F7F7'
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            return tooltipItems[0].label;
+                        },
+                        label: function(context) {
+                            const value = context.raw;
+                            const duration = value[1] - value[0];
+                            const zoneLabel = context.dataset.label;
+                            return `${zoneLabel}: semana ${value[0]} a ${value[1]} (Duración: ${duration} semanas)`;
+                        }
+                    }
+                }
+            }
+        };
+
+        new Chart(trenTrabajoCtx, { type: 'bar', data: data, options: options });
+
+    </script>
+</body>
+</html>
